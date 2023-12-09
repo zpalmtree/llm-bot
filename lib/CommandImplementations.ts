@@ -13,6 +13,8 @@ export async function replyWithMention(msg: Message, reply: string): Promise<voi
 }
 
 export async function handleGPT(msg: Message, args: string): Promise<void> {
+    console.log(`Got request for ${args}`);
+
     const model = 'noromaid';
 
     try {
