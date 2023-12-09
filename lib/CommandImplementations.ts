@@ -27,6 +27,15 @@ export async function handleGPT(msg: Message, args: string): Promise<void> {
 
         const data = await response.json();
 
+        if (!data.response) {
+            if (data.error) {
+                await msg.reply(`Failed to get response: ${data.error}`);
+                return;
+            }
+
+            throw new Error('Unknown internal error');
+        }
+
         const generation = data.response.replace(/^\s+|\s+$/g, '');
 
         await msg.reply(truncateResponse(generation));
