@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": [
+      "es2021",
+      "dom",
+      "scripthost"
+    ],
+    "module": "ES2020",
+    "declaration": true,
+    "outDir": "./dist",
+    "strict": true,
+    "baseUrl": "./lib",
+    "downlevelIteration": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
+  }
+}

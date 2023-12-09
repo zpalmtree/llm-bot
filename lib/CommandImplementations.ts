@@ -1,0 +1,36 @@
+import { Message } from 'discord.js';
+
+import { config } from './Config.js';
+import { truncateResponse } from './Utilities.js';
+
+export async function replyWithMention(msg: Message, reply: string): Promise<void> {
+    if (msg.mentions.users.size > 0)   {
+        const usersMentioned = [...msg.mentions.users.keys()].map((id) => `<@${id}>`).join(' ');
+        await msg.reply(`${usersMentioned} ${reply}`);
+    } else {
+        await msg.channel.send(reply);
+    }
+}
+
+export async function handleGPT(msg: Message, args: string): Promise<void> {
+    const model = 'noromaid';
+
+    try {
+        const response = await fetch(`${config.ollamaURI}/api/generate`, {
+            body: JSON.stringify({
+                model,
+                prompt: args,
+                stream: false,
+            }),
+            method: 'POST',
+        });
+
+        const data = await response.json();
+
+        const generation = data.response.replace(/^\s+|\s+$/g, '');
+
+        await msg.reply(truncateResponse(generation));
+    } catch (err) {
+        await msg.reply(`Failed to get response: ${err}`);
+    }
+}

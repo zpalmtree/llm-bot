@@ -1,0 +1,23 @@
+class Config {
+    /* Discord token */
+    public token: string = '';
+
+    /* Prefix for bot, e.g. $roll */
+    public prefix: string = '$';
+
+    public devEnv: boolean = true;
+
+    public devChannels: string[] = ['483470443001413675', '980319231608500294'];
+
+    public privilegedChannels: string[] = [
+        '746507379310461010',
+        '820837312551714846',
+        '433423208662827009',
+    ];
+
+    public god: string = '354701063955152898';
+
+    public dbFile: string = 'ai.sqlite3';
+}
+
+export let config = new Config();

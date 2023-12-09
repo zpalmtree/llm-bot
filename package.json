@@ -1,0 +1,26 @@
+{
+  "name": "bot-template",
+  "version": "1.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "start": "node dist/index.js",
+    "prepublish": "yarn build",
+    "build": "./node_modules/.bin/tsc"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "license": "AGPL-3.0-or-later",
+  "devDependencies": {
+    "@types/node": "^16.6.1",
+    "@types/sqlite3": "^3.1.6",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "discord.js": "^14.13.0",
+    "moment": "^2.24.0",
+    "sqlite3": "^5.0.0"
+  }
+}
