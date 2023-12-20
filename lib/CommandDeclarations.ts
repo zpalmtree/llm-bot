@@ -19,18 +19,19 @@ import {
 } from './Utilities.js';
 
 import {
-    handleGPT,
+    handleNoromaid,
+    handleMixtral,
 } from './CommandImplementations.js';
 
 import { config } from './Config.js';
 
 export const Commands: Command[] = [
     {
-        aliases: ['llama'],
+        aliases: ['llama', 'noromaid'],
         primaryCommand: {
             argsFormat: Args.Combined,
-            implementation: handleGPT,
-            description: 'Provide a prompt to the GPT3 AI and get a completion',
+            implementation: handleNoromaid,
+            description: 'Provide a prompt to the noromaid AI and get a completion',
         },
         relatedCommands: [
         ],
@@ -38,6 +39,20 @@ export const Commands: Command[] = [
             slugUserGate,
         ],
     },
+    {
+        aliases: ['mixtral', 'mistral'],
+        primaryCommand: {
+            argsFormat: Args.Combined,
+            implementation: handleMixtral,
+            description: 'Provide a prompt to the mixtral 8x7b AI and get a completion',
+        },
+        relatedCommands: [
+        ],
+        commandGates: [
+            slugUserGate,
+        ],
+    },
+
 ];
 
 export function handleHelp(msg: Message, args: string): void {
