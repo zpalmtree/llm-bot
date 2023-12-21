@@ -2,6 +2,10 @@ import { Message } from 'discord.js';
 
 import { config } from './Config.js';
 import { truncateResponse } from './Utilities.js';
+import { FuncQueue } from './FuncQueue.js';
+
+const llmQueue = new FuncQueue();
+llmQueue.init();
 
 export async function replyWithMention(msg: Message, reply: string): Promise<void> {
     if (msg.mentions.users.size > 0)   {
@@ -16,7 +20,7 @@ export async function handleNoromaid(msg: Message, args: string): Promise<void> 
     console.log(`Got request for ${args}`);
 
     try {
-        const generation = await handleOllama({
+        const generation = await llmQueue.runOnceQueueEmpty(handleOllama, {
             model: 'noromaid',
             prompt: args,
         });
@@ -31,7 +35,7 @@ export async function handleMixtral(msg: Message, args: string): Promise<void> {
     console.log(`Got request for ${args}`);
 
     try {
-        const generation = await handleOllama({
+        const generation = await llmQueue.runOnceQueueEmpty(handleOllama, {
             model: 'dolphin-mixtral-v2.5',
             prompt: args,
         });
