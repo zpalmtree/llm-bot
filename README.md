@@ -10,3 +10,5 @@
 * Fill out config
 * `yarn install`
 * `yarn build && yarn start`
+
+![image](https://github.com/zpalmtree/llm-bot/assets/22151537/a1a2ff7e-cf24-4133-a5cd-ab9541cec08d)
