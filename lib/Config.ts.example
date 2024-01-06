@@ -18,6 +18,8 @@ class Config {
     public god: string = '354701063955152898';
 
     public dbFile: string = 'ai.sqlite3';
+
+    public ollamaURI: string = 'http://localhost:11434';
 }
 
 export let config = new Config();
