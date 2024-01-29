@@ -58,6 +58,9 @@ export async function handleOllama(body: any): Promise<string> {
     const data = await response.json();
 
     if (!data.response) {
+        console.log(data);
+        console.log(data.statusCode);
+
         if (data.error) {
             throw new Error(`Failed to get response: ${data.error}`);
         }
